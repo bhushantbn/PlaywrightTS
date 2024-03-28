@@ -1,0 +1,25 @@
+import {test,expect,Browser, Page} from '@playwright/test'
+import { chromium,webkit,firefox } from '@playwright/test'
+
+test('move Element',async()=>{
+    const browser:Browser=await chromium.launch({headless:false,channel:'chrome'})
+    const page:Page=await browser.newPage()
+    page.goto("https://www.spicejet.com")
+    page.getByText('Add-ons').first().hover()
+    page.getByText('Taxi').first().click()
+    await page.waitForTimeout(5000)
+    await page.close()
+})
+// assignment
+
+test('big basket mousehover',async()=>{
+    const browser:Browser=await chromium.launch({headless:false,channel:'chrome'})
+    const page:Page=await browser.newPage()
+    await page.goto('https://www.bigbasket.com/')
+    await page.locator('//button[@id="headlessui-menu-button-:R5bab6:"]').click()
+    await page.locator('//a[@role="none"][normalize-space()="Beverages"]').first().hover()
+    await page.locator('//a[normalize-space()="Tea"]').first().hover()
+    await page.locator('//a[normalize-space()="Green Tea"]').first().click()
+    await page.waitForTimeout(4000)
+    await page.close()
+})

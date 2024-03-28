@@ -38,7 +38,8 @@ To run your Playwright tests, use the following command:
 npx playwright test
 
 
-Additional Resources
+## Additional Resources
+
 TypeScript Documentation
 Playwright Documentation
 Playwright GitHub Repository

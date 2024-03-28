@@ -7,7 +7,6 @@ This repository serves as a beginner's guide to using TypeScript with Playwright
 - [Introduction](#introduction)
 - [Prerequisites](#prerequisites)
 - [Getting Started](#getting-started)
-- [Writing TypeScript Code](#writing-typescript-code)
 - [Running Tests with Playwright](#running-tests-with-playwright)
 - [Additional Resources](#additional-resources)
 

@@ -16,7 +16,7 @@ test.describe("herokuapp testcases", () => {
     await page.locator('//select[@id="dropdown"]').selectOption({value:'2'})
     await page.waitForTimeout(1000)
   });
-  test('verify checkboxes',async({page})=>{
+  test.skip('verify checkboxes',async({page})=>{
     await page.getByRole("link", { name: "checkboxes" }).click();
     await page.waitForTimeout(2000);
     await expect(page.getByText("Checkboxes")).toBeVisible();

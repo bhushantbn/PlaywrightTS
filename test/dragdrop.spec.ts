@@ -2,7 +2,7 @@ import { test, expect, Browser, chromium, Page } from "@playwright/test";
 
 test("Drag and drop", async () => {
   const browser: Browser = await chromium.launch({
-    headless: false,
+    headless: true,
     channel: "chrome",
   });
   const page: Page = await browser.newPage();
@@ -15,7 +15,7 @@ test("Drag and drop", async () => {
 });
 test("mouse Operation", async () => {
   const browser: Browser = await chromium.launch({
-    headless: false,
+    headless: true,
     channel: "chrome",
   });
   const page: Page = await browser.newPage();

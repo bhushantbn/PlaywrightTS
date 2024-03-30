@@ -2,7 +2,7 @@ import {test,expect,Browser, Page} from '@playwright/test'
 import { chromium,webkit,firefox } from '@playwright/test'
 
 test('move Element',async()=>{
-    const browser:Browser=await chromium.launch({headless:false,channel:'chrome'})
+    const browser:Browser=await chromium.launch({headless:true,channel:'chrome'})
     const page:Page=await browser.newPage()
     await page.goto("https://www.spicejet.com")
     await page.getByText('Add-ons').first().hover()
@@ -13,7 +13,7 @@ test('move Element',async()=>{
 // assignment
 
 test('big basket mousehover',async()=>{
-    const browser:Browser=await chromium.launch({headless:false,channel:'chrome'})
+    const browser:Browser=await chromium.launch({headless:true,channel:'chrome'})
     const page:Page=await browser.newPage()
     await page.goto('https://www.bigbasket.com/')
     await page.locator('//button[@id="headlessui-menu-button-:R5bab6:"]').click()

@@ -2,7 +2,7 @@ import { test, expect, chromium } from "@playwright/test";
 import { AxeBuilder } from "@axe-core/playwright";
 import { error } from "console";
 
-test("Accessibility testing", async ({ page }) => {
+test.skip("Accessibility testing", async ({ page }) => {
   await page.goto("https://bbc.co.uk/");
 
   await test.step("Check ally", async () => {

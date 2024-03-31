@@ -16,11 +16,11 @@ test.describe("herokuapp testcases", () => {
     await page.locator('//select[@id="dropdown"]').selectOption({value:'2'})
     await page.waitForTimeout(1000)
   });
-  test.skip('verify checkboxes',async({page})=>{
+  test('verify checkboxes',async({page})=>{
     await page.getByRole("link", { name: "checkboxes" }).click();
     await page.waitForTimeout(2000);
     await expect(page.getByText("Checkboxes")).toBeVisible();
-    //await page.getByRole('checkbox').first().check()
-    await expect(page.getByRole('checkbox',{name:'checkbox2'}).isChecked()).toBeTruthy()
+    await page.getByRole('checkbox').first().check()
+    
   })
 });

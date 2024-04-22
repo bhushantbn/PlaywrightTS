@@ -10,9 +10,7 @@ test.afterEach(async ({ page }) => {
   await page.close();
 });
 
-test("Verify Countdown Timer Displays IST",{
-  tag:'@IST'
-},async ({ page }) => {
+test("Verify Countdown Timer Displays IST",async ({ page }) => {
   await page.locator('//a[normalize-space()="Virtual DOM"]').click();
   function getTimeZone(timezone: string) {
     return tz(timezone).format("h:mm:ss A");

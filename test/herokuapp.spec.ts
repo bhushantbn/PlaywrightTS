@@ -12,7 +12,7 @@ test.describe("herokuapp testcases", () => {
     await page.waitForTimeout(2000);
     await expect(page.getByText("Dropdown List")).toBeVisible();
     await expect(page.locator('h3',{hasText:'Dropdown List'})).toBeVisible();
-    await page.waitForTimeout(2000)
+    // await page.waitForTimeout(2000)
     await page.locator('//select[@id="dropdown"]').selectOption({value:'2'})
     await page.waitForTimeout(1000)
   });

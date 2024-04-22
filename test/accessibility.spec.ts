@@ -2,13 +2,14 @@ import { test, expect, chromium } from "@playwright/test";
 import { AxeBuilder } from "@axe-core/playwright";
 import { error } from "console";
 
-test.skip("Accessibility testing", async ({ page }) => {
+test("Accessibility testing", async ({ page }) => {
   await page.goto("https://bbc.co.uk/");
-
-  await test.step("Check ally", async () => {
-    const { violations } = await new AxeBuilder({ page })
-      .withTags(["wcag2a", "wcag22a"])
+  const accessibilityScanResults = await new AxeBuilder({ page })
+      .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
       .analyze();
-    expect(violations).toHaveLength(2);
-  });
+
+  expect(accessibilityScanResults.violations).toEqual([]);
+
+
+  await page.close()
 });

@@ -9,6 +9,6 @@ test("Handle random Popup", async ({ page }) => {
   );
   await page.goto("https://commitquality.com/practice-random-popup");
   await new Promise((resolve) => setTimeout(resolve, 6000));
-  await page.getByTestId('accordion-1').click({timeout:2000});
+  await page.locator('[data-testid="accordion-1"]').click();
   //await page.close()
 });

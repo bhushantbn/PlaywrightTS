@@ -1,6 +1,5 @@
 import { test, expect } from "@playwright/test";
 import { convertHexToRGB } from "../utils/convertHexToRGB";
-import { scaleToMatrix } from "../utils/scaleToMatrix";
 
 test.beforeEach(async ({ page }) => {
   await page.goto("https://www.lambdatest.com/selenium-playground/");

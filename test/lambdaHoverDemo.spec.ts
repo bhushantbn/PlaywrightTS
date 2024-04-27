@@ -1,5 +1,6 @@
 import { test, expect } from "@playwright/test";
 import { convertHexToRGB } from "../utils/convertHexToRGB";
+import { scaleToMatrix } from "../utils/scaleToMatrix";
 
 test.beforeEach(async ({ page }) => {
   await page.goto("https://www.lambdatest.com/selenium-playground/");
@@ -111,7 +112,7 @@ test("No Effect only content show Effect", async ({ page }) => {
   expect(await p.textContent()).toBe("Hover");
 });
 
-test("CSS Zoom effect", async ({ page }) => {
+test("CSS Zoom IN effect", async ({ page }) => {
   const imgLocator = page.locator(
     '//div[@class="image-card"]//img[@alt="Image"]'
   );
@@ -133,4 +134,15 @@ test("CSS Zoom effect", async ({ page }) => {
   });
   console.log(isImageHover);
   expect(isImageHover).toBeTruthy();
+});
+test("CSS Zoom OUT Effect", async ({ page }) => {
+  const imgLocator = page.locator(
+    "//div[@class='s__column3']//img[@alt='Image']"
+  );
+  await imgLocator.hover();
+  const transformValue = await imgLocator.evaluate(
+    (element) => window.getComputedStyle(element).transform
+  );
+  console.log(transformValue);
+  expect(transformValue).toBeTruthy()
 });

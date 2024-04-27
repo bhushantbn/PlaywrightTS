@@ -108,6 +108,13 @@ test("No Effect only content show Effect", async ({ page }) => {
   await img.hover();
   expect(await p.textContent()).toBe("Hover");
 });
+test("CSS Zoom effect",async({page})=>{
+  const imgLocator=page.locator('//div[@class="image-card"]//img[@alt="Image"]');
+  await imgLocator.hover();
+  const screenshot=await page.screenshot();
+  await page.waitForTimeout(2000);
+  expect(screenshot).toMatchSnapshot('image-zoom-hover.png');
+})
 
 function convertHexToRGB(hex: string) {
   // Remove the '#' if it's included in the input

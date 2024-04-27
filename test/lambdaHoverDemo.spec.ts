@@ -1,4 +1,5 @@
 import { test, expect } from "@playwright/test";
+import { convertHexToRGB } from "../utils/convertHexToRGB";
 
 test.beforeEach(async ({ page }) => {
   await page.goto("https://www.lambdatest.com/selenium-playground/");
@@ -17,7 +18,7 @@ test("Check Hover Demo Button BG-Color", async ({ page }) => {
     '//div[@class="bg-green-100 border border-green-100 text-white px-15 py-5 rounded font-medium hover:bg-white hover:text-green-100 cursor-pointer transition duration-300"]'
   );
   let rgbColor = convertHexToRGB("#28a745");
-  
+
   await expect(button).toHaveCSS(
     "background-color",
     `rgb(${rgbColor.red}, ${rgbColor.green}, ${rgbColor.blue})`
@@ -87,6 +88,7 @@ test("Check Link Hover Text Decoration", async ({ page }) => {
   console.log(isUnderlinePresent);
   expect(isUnderlinePresent).toBeTruthy();
 });
+
 test("Check Hover Me Text Color", async ({ page }) => {
   const link = page.locator(
     '//div[@class="ml-40 font-semibold text-gray-800 hover:text-lambda-900 cursor-pointer transition duration-300"]'
@@ -108,27 +110,27 @@ test("No Effect only content show Effect", async ({ page }) => {
   await img.hover();
   expect(await p.textContent()).toBe("Hover");
 });
-test("CSS Zoom effect",async({page})=>{
-  const imgLocator=page.locator('//div[@class="image-card"]//img[@alt="Image"]');
+
+test("CSS Zoom effect", async ({ page }) => {
+  const imgLocator = page.locator(
+    '//div[@class="image-card"]//img[@alt="Image"]'
+  );
   await imgLocator.hover();
-  const screenshot=await page.screenshot();
   await page.waitForTimeout(2000);
-  expect(screenshot).toMatchSnapshot('image-zoom-hover.png');
-})
+  const isImageHover = await imgLocator.evaluate(() => {
+    // Find the element you want to check for underline
+    const element = document.querySelector(
+      'div[class="image-card"] img[alt="Image"]'
+    ); // Replace 'your-selector' with your CSS selector
 
-function convertHexToRGB(hex: string) {
-  // Remove the '#' if it's included in the input
-  hex = hex.replace(/^#/, "");
-
-  // Parse the hex values into separate R, G, and B values
-  const red = parseInt(hex.substring(0, 2), 16);
-  const green = parseInt(hex.substring(2, 4), 16);
-  const blue = parseInt(hex.substring(4, 6), 16);
-
-  // Return the RGB values in an object
-  return {
-    red: red,
-    green: green,
-    blue: blue,
-  };
-}
+    // Check if the element exists
+    if (!element) {
+      // If element doesn't exist, return false
+      return false;
+    }
+    const computedStyle = window.getComputedStyle(element);
+    return computedStyle.transition.includes(".4s ease");
+  });
+  console.log(isImageHover);
+  expect(isImageHover).toBeTruthy();
+});

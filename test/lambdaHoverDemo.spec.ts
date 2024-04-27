@@ -17,7 +17,7 @@ test("Check Hover Demo Button BG-Color", async ({ page }) => {
     '//div[@class="bg-green-100 border border-green-100 text-white px-15 py-5 rounded font-medium hover:bg-white hover:text-green-100 cursor-pointer transition duration-300"]'
   );
   let rgbColor = convertHexToRGB("#28a745");
-
+  
   await expect(button).toHaveCSS(
     "background-color",
     `rgb(${rgbColor.red}, ${rgbColor.green}, ${rgbColor.blue})`
@@ -100,12 +100,14 @@ test("Check Hover Me Text Color", async ({ page }) => {
   );
 });
 
-test("No Effect only content show Effect",async({page})=>{
-    const img=page.locator('//div[@class="s__column m-15"]//img[@alt="Image"]')
-    const p=page.locator('//p[@class="text-center w-300 sp__text font-medium"]')
-    await img.hover()
-    expect(await p.textContent()).toBe("Hover")
-})
+test("No Effect only content show Effect", async ({ page }) => {
+  const img = page.locator('//div[@class="s__column m-15"]//img[@alt="Image"]');
+  const p = page.locator(
+    '//p[@class="text-center w-300 sp__text font-medium"]'
+  );
+  await img.hover();
+  expect(await p.textContent()).toBe("Hover");
+});
 
 function convertHexToRGB(hex: string) {
   // Remove the '#' if it's included in the input

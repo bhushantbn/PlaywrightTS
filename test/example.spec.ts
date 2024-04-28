@@ -1,20 +1,18 @@
-import { test, expect, Page, chromium } from '@playwright/test';
-import { firstFrontDemo } from '../pages/firstFrontDemo';
+import { test, expect } from '@playwright/test';
 
-test.describe("First front demo store test cases",()=>{
-  let page:Page;
+test('has title', async ({ page }) => {
+  await page.goto('https://playwright.dev/');
 
-  test.beforeEach(async({browser})=>{
-    browser=await chromium.launch()
-    await page.goto('https://meetanshi.in/m2d1/')
-  })
-  test.afterEach(async ({ page }) => {
-    await page.close()
-  });
-  
-  test('Add TO Cart', async ({ page }) => {
-    
-  });
-  
+  // Expect a title "to contain" a substring.
+  await expect(page).toHaveTitle(/Playwright/);
+});
 
-})
+test('get started link', async ({ page }) => {
+  await page.goto('https://playwright.dev/');
+
+  // Click the get started link.
+  await page.getByRole('link', { name: 'Get started' }).click();
+
+  // Expects page to have a heading with the name of Installation.
+  await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible();
+});

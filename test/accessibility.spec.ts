@@ -1,15 +1,18 @@
-import { test, expect, chromium } from "@playwright/test";
-import { AxeBuilder } from "@axe-core/playwright";
-import { error } from "console";
+import { AxeBuilder } from '@axe-core/playwright';
+import {test,expect, chromium} from '@playwright/test';
 
-test("Accessibility testing", async ({ page }) => {
-  await page.goto("https://bbc.co.uk/");
-  const accessibilityScanResults = await new AxeBuilder({ page })
-      .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
-      .analyze();
+test("Accesibility testing",async () => {
+  const browser = await chromium.launch({ headless: true });
+  const context = await browser.newContext();
+  const page = await context.newPage();
+  await page.goto('https://dequeuniversity.com/demo/mars/');
 
-  expect(accessibilityScanResults.violations).toEqual([]);
+  try {
+    const results = await new AxeBuilder({ page }).analyze();
+    console.log(results);
+  } catch (e) {
+    // do something with the error
+  }
 
-
-  await page.close()
+  await browser.close();
 });

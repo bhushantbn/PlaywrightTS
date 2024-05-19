@@ -1,6 +1,4 @@
 import { test, expect } from "@playwright/test";
-import { assert } from "console";
-import { link } from "fs";
 import { convertHexToRGB } from "../utils/convertHexToRGB.ts";
 
 test.beforeEach(async ({ page }) => {

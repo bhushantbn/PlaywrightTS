@@ -3,9 +3,7 @@ import { test, expect } from "@playwright/test";
 test.beforeEach(async ({ page }) => {
   await page.goto("https://ui.shadcn.com/");
   await page
-    .locator(
-      "svg[class='absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100']"
-    )
+    .getByText("Components").nth(1)
     .click();
   await page.getByRole("link", { name: "Components" }).click();
 });

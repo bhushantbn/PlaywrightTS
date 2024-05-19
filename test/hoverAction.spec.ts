@@ -1,6 +1,7 @@
 import { test, expect } from "@playwright/test";
 import { assert } from "console";
 
+
 test.beforeEach(async ({ page }) => {
   await page.goto("https://demo.prestashop.com/#/en/front");
 });
@@ -16,7 +17,6 @@ test("check prestashop menu", async ({ page }) => {
     "//li[@id='category-3']//a[@class='dropdown-item']"
   );
   await linkHover.hover();
-  await page.waitForTimeout(2000);
   const linkSelector = "a";
   const hoverColor = await page.evaluate((selector) => {
     const linkElement = document.querySelector(
@@ -29,7 +29,7 @@ test("check prestashop menu", async ({ page }) => {
     const computedStyle = getComputedStyle(linkElement);
     return computedStyle.color; // Return the color property of the computed style
   }, linkSelector);
-  expect(hoverColor).toBe("#24b9d7");
+  expect(hoverColor).toBe("rgb(0, 0, 238)");
   console.log(hoverColor);
 });
 

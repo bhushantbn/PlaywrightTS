@@ -4,7 +4,7 @@ import path from "path";
 import fs from "fs";
 
 test.beforeEach(async ({ page }) => {
-  await page.goto("https://www.lambdatest.com/");
+  await page.goto("https://www.lambdatest.com/selenium-playground/");
 });
 test.afterEach(async ({ page }) => {
   await page.close();

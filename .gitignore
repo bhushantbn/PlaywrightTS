@@ -9,10 +9,11 @@ node_modules/
 /playwright/.cache/
 screenshots/
 
-*.csv
+links.csv
 zerostep.config.json
 /test-results/
 /playwright-report/
 /blob-report/
 /playwright/.cache/
 *.png
+*.txt

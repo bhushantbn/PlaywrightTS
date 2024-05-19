@@ -3,14 +3,13 @@ import { chromium, webkit, firefox } from "@playwright/test";
 
 test("move Element", async () => {
   const browser: Browser = await chromium.launch({
-    headless: false,
+    headless: true,
     channel: "chrome",
   });
   const page: Page = await browser.newPage();
   await page.goto("https://www.spicejet.com");
   await page.getByText("Add-ons").first().hover();
   await page.getByText("Taxi").first().click();
-  await page.waitForTimeout(5000);
   await page.close();
 });
 

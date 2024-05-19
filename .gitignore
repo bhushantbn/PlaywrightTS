@@ -9,7 +9,7 @@ node_modules/
 /playwright/.cache/
 screenshots/
 
-links.csv
+*.csv
 zerostep.config.json
 /test-results/
 /playwright-report/

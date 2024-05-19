@@ -15,5 +15,5 @@ zerostep.config.json
 /playwright-report/
 /blob-report/
 /playwright/.cache/
-*.png
+/*.png
 *.txt

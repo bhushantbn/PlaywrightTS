@@ -11,7 +11,6 @@ test.describe("Context Menu", () => {
   });
   test("Verify Context menu dialog", async ({ page }) => {
     page.on("dialog", async (dialog) => {
-      await page.waitForTimeout(3000);
       expect(dialog.type()).toContain("alert");
       expect(dialog.message()).toContain("You selected a context menu");
       await dialog.accept();

@@ -17,3 +17,9 @@ zerostep.config.json
 /playwright/.cache/
 /*.png
 *.txt
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+.env
+storageState.json

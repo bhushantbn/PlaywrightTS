@@ -10,3 +10,16 @@ node_modules/
 screenshots/
 
 links.csv
+zerostep.config.json
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/*.png
+*.txt
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+.env
+storageState.json

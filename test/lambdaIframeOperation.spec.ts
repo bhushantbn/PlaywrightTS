@@ -18,7 +18,7 @@ test("Check Heading of Frame locator page", async ({ page }) => {
   }
 });
 test("Check font Bold in iFrame Text", async ({ page }) => {
-  const textEditor = await page
+  const textEditor = page
     .frameLocator(
       "div >> internal:has-text=/^Simple iFrame containing Editor$/ >> iframe"
     )
@@ -44,10 +44,10 @@ test("Check font Bold in iFrame Text", async ({ page }) => {
   });
   console.log("font weight is:", computedStyle.fontWeight);
   expect(computedStyle.fontWeight).toBe(expectedFontWeight);
-  await expect(expectedFontWeight).toBeTruthy();
+  expect(expectedFontWeight).toBeTruthy();
 });
 test("Check font italic in iFrame Text", async ({ page }) => {
-  const textEditor = await page
+  const textEditor = page
     .frameLocator(
       "div >> internal:has-text=/^Simple iFrame containing Editor$/ >> iframe"
     )
@@ -73,11 +73,11 @@ test("Check font italic in iFrame Text", async ({ page }) => {
   });
   console.log("font style is:", computedStyle.fontStyle);
   expect(computedStyle.fontStyle).toBe(expectedFontStyle);
-  await expect(expectedFontStyle).toBeTruthy();
+  expect(expectedFontStyle).toBeTruthy();
 });
 
 test("Check font line-Through style in iFrame Text", async ({ page }) => {
-  const textEditor = await page
+  const textEditor = page
     .frameLocator(
       "div >> internal:has-text=/^Simple iFrame containing Editor$/ >> iframe"
     )
@@ -106,7 +106,7 @@ test("Check font line-Through style in iFrame Text", async ({ page }) => {
   expect(hasLineThrough).toBe(true);
 });
 test("Check font Underline style in iFrame Text", async ({ page }) => {
-  const textEditor = await page
+  const textEditor = page
     .frameLocator(
       "div >> internal:has-text=/^Simple iFrame containing Editor$/ >> iframe"
     )

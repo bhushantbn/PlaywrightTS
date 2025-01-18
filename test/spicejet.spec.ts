@@ -3,18 +3,17 @@ import { chromium, webkit, firefox } from "@playwright/test";
 
 test("move Element", async () => {
   const browser: Browser = await chromium.launch({
-    headless: false,
+    headless: true,
     channel: "chrome",
   });
   const page: Page = await browser.newPage();
   await page.goto("https://www.spicejet.com");
   await page.getByText("Add-ons").first().hover();
   await page.getByText("Taxi").first().click();
-  await page.waitForTimeout(5000);
   await page.close();
 });
 
-test.only("big basket mousehover", async ({page}) => {
+test("big basket mousehover", async ({page}) => {
   await page.goto("https://www.bigbasket.com/");
   await page.locator('//button[@id="headlessui-menu-button-:R5bab6:"]').click();
   await page

@@ -1,5 +1,5 @@
 import { test, expect } from "@playwright/test";
-import { Faker, faker } from "@faker-js/faker";
+import { faker } from "@faker-js/faker";
 
 test.beforeEach(async ({ page }) => {
   await page.goto("https://www.lambdatest.com/selenium-playground/");

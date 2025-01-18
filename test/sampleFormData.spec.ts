@@ -10,22 +10,24 @@ test.afterEach(async ({ page }) => {
 });
 
 test("Check Sample Form Faker Data", async ({ page }) => {
-  await page.locator("//a[normalize-space()='Simple Form Demo']").click();
+  await page.getByRole("link",{name:'Simple Form Demo'}).click();
   const message = faker.git.commitMessage();
-  await page.locator("//input[@id='user-message']").fill(message);
-  await page.locator("//button[@id='showInput']").click();
-  expect(await page.locator("//p[@id='message']").textContent()).toBe(message);
+  await page.getByPlaceholder("Please enter your Message").fill(message);
+  await page.getByRole("button",{name:'Get Checked Value'}).click();
+  expect(await page.locator("#message").textContent()).toBe(message);
   console.log(message);
 });
 
 test('Check sum of 2 input fields',async({page})=>{
-  await page.locator("//a[normalize-space()='Simple Form Demo']").click();
+  await page.getByRole("link",{name:'Simple Form Demo'}).click();
   const num1=faker.number.int()
-  await page.locator('//input[@id="sum1"]').fill(`${num1}`)
+  await page.getByPlaceholder('Please enter first value').fill(`${num1}`)
   const num2=faker.number.int()
-  await page.locator('//input[@id="sum2"]').fill(`${num2}`)
-  await page.locator('//button[normalize-space()="Get Sum"]').click()
+  await page.getByPlaceholder('Please enter second value').fill(`${num2}`)
+  await page.getByRole('button',{name:'Get Sum'}).click()
   const sum = num1+num2
-  expect(await page.locator('//p[@id="addmessage"]').textContent()).toBe(`${sum}`)
+  expect(await page.locator('#addmessage').textContent()).toBe(`${sum}`)
+  console.log(sum);
+  
 })
 

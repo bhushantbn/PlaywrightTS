@@ -4,24 +4,21 @@ import path from "path";
 import fs from "fs";
 
 test.beforeEach(async ({ page }) => {
-  await page.goto("https://www.lambdatest.com/");
+  await page.goto("https://www.lambdatest.com/selenium-playground/");
 });
 test.afterEach(async ({ page }) => {
   await page.close();
 });
 test("file download", async ({ page }) => {
-  await page.locator('//a[normalize-space()="Download File Demo"]').click();
-  await page.locator('//button[@type="button"]').click();
-  await page.waitForTimeout(3000);
+  await page.getByRole('link',{name:'Download File Demo'}).click();
+  await page.getByRole('button',{name:'Download File'}).click();
 });
 test("Generate and Download Text file", async ({ page }) => {
-  await page.waitForTimeout(2000);
-  await page.locator('//a[normalize-space()="File Download"]').click();
+  await page.getByRole('link',{name:'File Download'}).click();
   await page
-    .locator('//textarea[@id="textbox"]')
+    .locator('#textbox')
     .pressSequentially("Hello World!!!");
-  await page.waitForTimeout(2000);
-  await page.locator("id=create").click();
+  await page.getByRole("button",{name:'Generate File'}).click();
   const download = await Promise.all([
     page.waitForEvent("download"),
     page.click("id=link-to-download"),
@@ -31,16 +28,14 @@ test("Generate and Download Text file", async ({ page }) => {
   console.log(fileName);
 });
 test("file Upload", async ({ page }) => {
-  await page.locator('//a[normalize-space()="Upload File Demo"]').click();
-  await page.waitForTimeout(2000);
+  await page.getByRole('link',{name:'Upload File Demo'}).click();
   await page
     .locator("#file")
-    .setInputFiles("C:/Users/user/OneDrive/Desktop/Playwright.png");
-  await page.waitForTimeout(2000);
-  expect(await page.locator('//div[@id="error"]').textContent()).toBe(
+    .setInputFiles("test/upload/screenshot.png");
+   expect(await page.locator('//div[@id="error"]').textContent()).toBe(
     "File Successfully Uploaded"
   );
-  //await expect(page.locator('//input[@id="file"]')).toHaveText("Playwright.png")
+ 
 });
 
 test("find link", async ({ page }) => {

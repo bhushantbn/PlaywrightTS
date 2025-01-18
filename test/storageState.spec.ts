@@ -1,5 +1,4 @@
 import {
-  test,
   chromium,
   expect,
   Browser,
@@ -9,6 +8,7 @@ import {
 import { globalSetup } from "../utils/setup.ts";
 import * as fs from "fs";
 import * as dotenv from "dotenv";
+import { test } from "../utils/fixture";
 dotenv.config();
 
 const storageStatePath = "storageState.json";
@@ -22,7 +22,6 @@ test.beforeAll(async () => {
   if (!fs.existsSync(storageStatePath)) {
     await globalSetup(storageStatePath);
   }
-
   browser = await chromium.launch();
 });
 
@@ -31,17 +30,17 @@ test.beforeEach(async () => {
   context = await browser.newContext({ storageState: storageStatePath });
   page = await context.newPage();
 
-  const baseURL = process.env.SHOPIFY_URL;
+  const baseURL = process.env.URL;
 
   if (!baseURL) {
     throw new Error("Environment variable SHOPIFY_URL must be set");
   }
 
   await page.goto(baseURL);
+  await page.getByRole("link", { name: "all lenses" }).click();
 });
 
 test.afterEach(async () => {
-  // Check if page and context are defined before closing them
   if (page) {
     await page.close();
   }
@@ -59,7 +58,6 @@ test.afterAll(async () => {
 
 test.describe("UI Testcases", () => {
   test("check subTitle font size", async () => {
-    await page.getByRole("link", { name: "all lenses" }).click();
     await page
       .locator("span.trust-badge-sub-title")
       .first()
@@ -68,5 +66,20 @@ test.describe("UI Testcases", () => {
     for (const element of await elements.all()) {
       await expect(element).toHaveCSS("font-size", "13px");
     }
+  });
+  test("check Title font size", async () => {
+    await page
+      .locator("span.trust-badge-title")
+      .first()
+      .waitFor({ state: "visible" });
+    const elements = page.locator("span.trust-badge-title");
+
+    for (const element of await elements.all()) {
+      await expect(element).toHaveCSS("font-size", "18px");
+    }
+  });
+  test("Verify Google Page Title", async () => {
+    const title = await page.title();
+    expect(title).toBe("Google");
   });
 });

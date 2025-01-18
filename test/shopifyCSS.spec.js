@@ -1,7 +1,6 @@
 import { test, expect, chromium } from "@playwright/test";
 import { convertHexToRGB } from "../utils/convertHexToRGB";
-import { assert } from "console";
-import exp from "constants";
+
 
 test.describe("AboutUs Section Jaypal UI Testcases", () => {
   test.beforeEach(async ({ page }) => {
@@ -411,27 +410,15 @@ test.describe("AboutUs Section Jaypal UI Testcases", () => {
       await page.setViewportSize({ width: 1920, height: 1080 });
     }
   );
-  test("check Title font size", async ({ page }) => {
-    await page.getByRole("link", { name: "all lenses" }).click();
-    await page
-      .locator("span.trust-badge-title")
-      .first()
-      .waitFor({ state: "visible" });
-    const elements = page.locator("span.trust-badge-title");
-
-    for (const element of await elements.all()) {
-      await expect(element).toHaveCSS("font-size", "18px");
-    }
-  });
-  test("check subTitle font size", async ({ page }) => {
-    await page.getByRole("link", { name: "all lenses" }).click();
-    await page
-      .locator("span.trust-badge-sub-title")
-      .first()
-      .waitFor({ state: "visible" });
-    const elements = page.locator("span.trust-badge-sub-title");
-    for (const element of await elements.all()) {
-      await expect(element).toHaveCSS("font-size", "13px");
+  test("Handle google page", async () => {
+    try {
+      const browser = await chromium.launch({ headless: false });
+      const context = await browser.newContext();
+      let page = await context.newPage();
+      await page.goto("google.com");
+      await browser.close();
+    } catch (error) {
+      console.error("Error:", error);
     }
   });
 });

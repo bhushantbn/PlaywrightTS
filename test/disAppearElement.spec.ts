@@ -15,7 +15,7 @@ test.describe("disappear Element", () => {
   });
   test("disappear Element hidden", async ({ page }) => {
     await page.getByRole("link", { name: "Disappearing Elements" }).click();
-    const liElements = await page.$$('li');
+    const liElements = await page.locator('li').all();
     for(const liElement of liElements){
       const text=await liElement.innerText()
       console.log(text);

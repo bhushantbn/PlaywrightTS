@@ -4,7 +4,7 @@ import { defineConfig, devices } from "@playwright/test";
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
  */
-// require('dotenv').config();
+ require('dotenv').config();
 
 /**
  * See https://playwright.dev/docs/test-configuration.
@@ -40,15 +40,15 @@ export default defineConfig({
       use: { ...devices["Desktop Chrome"], screenshot: "only-on-failure" },
     },
 
-    {
-      name: "firefox",
-      use: { ...devices["Desktop Firefox"], screenshot: "only-on-failure" },
-    },
+    // {
+    //   name: "firefox",
+    //   use: { ...devices["Desktop Firefox"], screenshot: "only-on-failure" },
+    // },
 
-    {
-      name: "webkit",
-      use: { ...devices["Desktop Safari"], screenshot: "only-on-failure" },
-    },
+    // {
+    //   name: "webkit",
+    //   use: { ...devices["Desktop Safari"], screenshot: "only-on-failure" },
+    // },
 
     /* Test against mobile viewports. */
     // {
@@ -61,14 +61,14 @@ export default defineConfig({
     // },
 
     /* Test against branded browsers. */
-    {
-      name: 'Microsoft Edge',
-      use: { ...devices['Desktop Edge'], channel: 'msedge',screenshot: 'only-on-failure' },
-    },
-    {
-      name: 'Google Chrome',
-      use: { ...devices['Desktop Chrome'], channel: 'chrome',screenshot: 'only-on-failure', },
-    },
+    // {
+    //   name: 'Microsoft Edge',
+    //   use: { ...devices['Desktop Edge'], channel: 'msedge',screenshot: 'only-on-failure' },
+    // },
+    // {
+    //   name: 'Google Chrome',
+    //   use: { ...devices['Desktop Chrome'], channel: 'chrome',screenshot: 'only-on-failure', },
+    // },
   ],
 
   /* Run your local dev server before starting the tests */

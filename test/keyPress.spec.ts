@@ -15,7 +15,7 @@ test("Keypress event", async ({ page }) => {
     await page.locator('//input[@id="my_field"]').press(inputText)
     const label=page.locator('#result')
     const labelText=await label?.textContent()
-    await page.waitForTimeout(2000)
+    //await page.waitForTimeout(2000)
     expect(labelText).toBeTruthy()
     console.log(inputText.toString().toUpperCase());
     console.log(labelText);

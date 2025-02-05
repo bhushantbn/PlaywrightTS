@@ -1,18 +1,21 @@
-import { test, expect } from "@playwright/test";
-import { faker } from "@faker-js/faker";
+import { test, expect, BrowserContext, Page } from "@playwright/test";
+
+let context: BrowserContext;
+let page: Page;
 
 test.describe("Context Menu", () => {
-  test.beforeEach(async ({ page }) => {
-    await page.goto("https://www.lambdatest.com/selenium-playground");
-    await page.getByText("Bootstrap Date Picker").click();
+  test.beforeEach(async ({ browser }) => {
+    context = await browser.newContext();
+    page = await context.newPage();
+    await page.goto("https://computer-database.gatling.io/computers"); // Replace with your actual URL
   });
-  test.afterEach(async ({ page }) => {
+
+  test.afterEach(async () => {
     await page.close();
+    await context.close();
   });
-  test("Verify Bootstrap Date Picker", async ({ page }) => {
-    const toDate = faker.date.past().toLocaleDateString("en-CA");
-    await page.locator("#birthday").fill(`${toDate}`);
-    console.log(toDate);
-    
+
+  test("Sample Test", async () => {
+    await expect(page).toHaveTitle(/Computers database/); // Replace with the expected title
   });
 });
